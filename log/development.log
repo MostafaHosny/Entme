@@ -1,0 +1,550 @@
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (124.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (111.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20170717000707)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170717000707"]]
+  [1m[35m (119.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-17 00:08:09.153559"], ["updated_at", "2017-07-17 00:08:09.153559"]]
+  [1m[35m (108.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddOmniauthToUsers (20170717000857)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "provider" varchar[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_users_on_provider" ON "users" ("provider")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "uid" varchar[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_provider' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_users_on_uid" ON "users" ("uid")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "name" varchar[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170717000857"]]
+  [1m[35m (187.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_provider' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_provider' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:29:10 +0200
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+Completed 401 Unauthorized in 23ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:29:10 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (3.8ms)
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application (32.5ms)
+Completed 200 OK in 1216ms (Views: 1169.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:29:21 +0200
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:29:22 +0200
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:30:32 +0200
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:30:32 +0200
+Started GET "/users/auth/facebook/callback?code=AQCtoNeJ-haKST7v0LxtQim1DUJeGbLa8G53-QUtkEgWU2TfccUbQfd0anWaR4SVV8fCaR29oUMESv_ctyE9yNgxoI6opRPkntWNxhYQLP3vQ1jJ5LAu-CcDBaJ6_y4ekRVNN_xALk92oIdy0NpBrFYeSZCrFLW0PGibmCwSfzXAwP5wkAm3lzTd6Fx1gvck8UGEc72QA0jMSl8uQPEIPvFJXaGkqGz42tBUnfo7paXhFkOe0NnYJBfR7L3Yn2hT5uaH2oiOxcUiZQl4FIwRd62QzepzJ9HZwMd-4x0UXSHFl5g5R5czBvXVvFCUhlGheoEH13WT6bntWjCKNjDAmJ0r&state=b3237d70502d83514c40cece5749f537274dec8676193e66" for 127.0.0.1 at 2017-07-17 02:30:42 +0200
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQCtoNeJ-haKST7v0LxtQim1DUJeGbLa8G53-QUtkEgWU2TfccUbQfd0anWaR4SVV8fCaR29oUMESv_ctyE9yNgxoI6opRPkntWNxhYQLP3vQ1jJ5LAu-CcDBaJ6_y4ekRVNN_xALk92oIdy0NpBrFYeSZCrFLW0PGibmCwSfzXAwP5wkAm3lzTd6Fx1gvck8UGEc72QA0jMSl8uQPEIPvFJXaGkqGz42tBUnfo7paXhFkOe0NnYJBfR7L3Yn2hT5uaH2oiOxcUiZQl4FIwRd62QzepzJ9HZwMd-4x0UXSHFl5g5R5czBvXVvFCUhlGheoEH13WT6bntWjCKNjDAmJ0r", "state"=>"b3237d70502d83514c40cece5749f537274dec8676193e66"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["provider", "facebook"], ["uid", "1621526534547040"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ido5555@hotmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "provider", "uid") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "ido5555@hotmail.com"], ["encrypted_password", "$2a$11$ogChOChxG6COfxUvFUCnTOCC5xILSGOFDUIQjphjKZwf5wotgtqAm"], ["created_at", "2017-07-17 00:30:44.123054"], ["updated_at", "2017-07-17 00:30:44.123054"], ["provider", "facebook"], ["uid", "1621526534547040"]]
+  [1m[35m (125.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", "2017-07-17 00:30:44.255155"], ["last_sign_in_at", "2017-07-17 00:30:44.255155"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", "2017-07-17 00:30:44.256537"], ["id", 1]]
+  [1m[35m (128.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 562ms (ActiveRecord: 255.8ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:30:44 +0200
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:30:44 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 406 Not Acceptable in 31ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionController::UnknownFormat (UsersController#index is missing a template for this request format and variant.
+
+request.formats: ["text/html"]
+request.variant: []
+
+NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.):
+  
+actionpack (5.1.2) lib/action_controller/metal/implicit_render.rb:53:in `default_render'
+actionpack (5.1.2) lib/action_controller/metal/basic_implicit_render.rb:4:in `block in send_action'
+actionpack (5.1.2) lib/action_controller/metal/basic_implicit_render.rb:4:in `tap'
+actionpack (5.1.2) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+actionpack (5.1.2) lib/abstract_controller/base.rb:186:in `process_action'
+actionpack (5.1.2) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.1.2) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+activesupport (5.1.2) lib/active_support/callbacks.rb:131:in `run_callbacks'
+actionpack (5.1.2) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.2) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.2) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.2) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.2) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.2) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.2) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.2) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.2) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.2) lib/abstract_controller/base.rb:124:in `process'
+actionview (5.1.2) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.2) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.2) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.2) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.2) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.2) lib/action_dispatch/journey/router.rb:46:in `block in serve'
+actionpack (5.1.2) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.2) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.2) lib/action_dispatch/routing/route_set.rb:832:in `call'
+omniauth (1.6.1) lib/omniauth/strategy.rb:189:in `call!'
+omniauth (1.6.1) lib/omniauth/strategy.rb:167:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.2) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.2) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.2) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.2) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.2) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:32:34 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 45ms (Views: 2.3ms | ActiveRecord: 1.9ms)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 1]]
+  [1m[35m (127.3ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:33:52 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 401 Unauthorized in 20ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:33:52 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (6.8ms)
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application (20.1ms)
+Completed 200 OK in 123ms (Views: 74.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-07-17 02:33:58 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/registrations/new.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 47ms (Views: 45.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:34:01 +0200
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:34:02 +0200
+Started GET "/users/auth/facebook/callback?code=AQCJjIUCTA9VEhwJ53pNdwTy6h0I_4Rz1BVVmB-zVWXRxkhCzpt_Jw9bRhzoyONGRnx5bFYf5HT8uQtZR_jlhEgT4hvOVXKYn20TugVMxzEHPN9vB70mKg9DnK0PoWCyDA_vzLrhRUtPTi4AMqVfwpWHWh-qRqtsCHnrVWEcZwauDYDQzDGSz7AKE-Xn0dtc9F2TMfj50WEnqYdlKOr_qBkVAJV88KTehs5nNxQIkCwP309Rei2ZmObNEB9oLZ0d4DPwqXGvK_GocNK85eLIyBAe_vT6nsFOoWZDIvv2c94eM8-ft2Ni6xUTbi7lNTivs3q-FIG9SRuvvg_AE68KxgsI&state=22d835ac7e795b48ad47df92a206738ca204beb39a0a3396" for 127.0.0.1 at 2017-07-17 02:34:02 +0200
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQCJjIUCTA9VEhwJ53pNdwTy6h0I_4Rz1BVVmB-zVWXRxkhCzpt_Jw9bRhzoyONGRnx5bFYf5HT8uQtZR_jlhEgT4hvOVXKYn20TugVMxzEHPN9vB70mKg9DnK0PoWCyDA_vzLrhRUtPTi4AMqVfwpWHWh-qRqtsCHnrVWEcZwauDYDQzDGSz7AKE-Xn0dtc9F2TMfj50WEnqYdlKOr_qBkVAJV88KTehs5nNxQIkCwP309Rei2ZmObNEB9oLZ0d4DPwqXGvK_GocNK85eLIyBAe_vT6nsFOoWZDIvv2c94eM8-ft2Ni6xUTbi7lNTivs3q-FIG9SRuvvg_AE68KxgsI", "state"=>"22d835ac7e795b48ad47df92a206738ca204beb39a0a3396"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["provider", "facebook"], ["uid", "1621526534547040"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ido5555@hotmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "provider", "uid") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "ido5555@hotmail.com"], ["encrypted_password", "$2a$11$fHHEi4mXT6XW/MyPqVqaJOUwG/1VgHkbQbcwUpg8CxDiftMChI2.e"], ["created_at", "2017-07-17 00:34:04.059455"], ["updated_at", "2017-07-17 00:34:04.059455"], ["provider", "facebook"], ["uid", "1621526534547040"]]
+  [1m[35m (162.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", "2017-07-17 00:34:04.227389"], ["last_sign_in_at", "2017-07-17 00:34:04.227389"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", "2017-07-17 00:34:04.228320"], ["id", 2]]
+  [1m[35m (109.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/sign_up
+Completed 302 Found in 469ms (ActiveRecord: 274.7ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-07-17 02:34:04 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:34:04 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:34:59 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 7ms (Views: 3.5ms | ActiveRecord: 0.9ms)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 2]]
+  [1m[35m (150.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:35:22 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 401 Unauthorized in 10ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:35:22 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (1.5ms)
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 59ms (Views: 30.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:35:24 +0200
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:35:25 +0200
+Started GET "/users/auth/facebook/callback?code=AQCt7tCFMz6e5FXuoN7QXobGJlKRdk4pjKHqu9a38Gxpg5EPQ1n7gpeEOFitRGPmINQGiO3lj_qQVXNLDHt6uvTAceLY3k-Nr8wmrxJA0hTPas4FNlffnqaEPNex9vwTH_p3PVskzwvA9ApPWvzClE4p9BY1Pcg0Vt9VIIAC3JJ9ynZPofegmtRTQmxK5x9qNJEI6x_-1yZMfthUC_fJHUQ2S2GOUhP9zpgzrfxfruqY1YqWNNSFk7iH80IAUWgCTWZg-sdE9idHJIoi-Cbv8BJ7EOH7C4lqjAZ7TNj3uADCc-xVs1QGcz5nlgNNcXwSN4APZBD5gl1BoE_l6BrON_SP&state=e689cb6124b88b24ce1e8f3b25231b556918f61a1c04465c" for 127.0.0.1 at 2017-07-17 02:35:25 +0200
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQCt7tCFMz6e5FXuoN7QXobGJlKRdk4pjKHqu9a38Gxpg5EPQ1n7gpeEOFitRGPmINQGiO3lj_qQVXNLDHt6uvTAceLY3k-Nr8wmrxJA0hTPas4FNlffnqaEPNex9vwTH_p3PVskzwvA9ApPWvzClE4p9BY1Pcg0Vt9VIIAC3JJ9ynZPofegmtRTQmxK5x9qNJEI6x_-1yZMfthUC_fJHUQ2S2GOUhP9zpgzrfxfruqY1YqWNNSFk7iH80IAUWgCTWZg-sdE9idHJIoi-Cbv8BJ7EOH7C4lqjAZ7TNj3uADCc-xVs1QGcz5nlgNNcXwSN4APZBD5gl1BoE_l6BrON_SP", "state"=>"e689cb6124b88b24ce1e8f3b25231b556918f61a1c04465c"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["provider", "facebook"], ["uid", "1621526534547040"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ido5555@hotmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "provider", "uid") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "ido5555@hotmail.com"], ["encrypted_password", "$2a$11$KMSL8eNNiOewBuii4shcMe9tcz4yH0qZbKTTQ1F8FkuJpgNQhyrXu"], ["created_at", "2017-07-17 00:35:26.591820"], ["updated_at", "2017-07-17 00:35:26.591820"], ["provider", "facebook"], ["uid", "1621526534547040"]]
+  [1m[35m (148.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", "2017-07-17 00:35:26.745389"], ["last_sign_in_at", "2017-07-17 00:35:26.745389"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", "2017-07-17 00:35:26.746251"], ["id", 3]]
+  [1m[35m (151.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 495ms (ActiveRecord: 303.6ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:35:26 +0200
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:35:26 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 6ms (Views: 2.0ms | ActiveRecord: 0.8ms)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 3]]
+  [1m[35m (156.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:36:15 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Completed 401 Unauthorized in 9ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:36:15 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (2.1ms)
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 54ms (Views: 29.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:36:17 +0200
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:36:17 +0200
+Started GET "/users/auth/facebook/callback?code=AQDYbyjv84oTw1ydAvOMq1VJrd2KOADIzs2-114GROAUolkOVOMAih5P0CjYkc-mQj-6V1OY9PoCKhs7p2G4CAzEbSKouSljm3_72OGFC3avSmHiaCofJZHJnwUtXpwCxFC3eO4jipiM2dUlLgvrxs3iB20Cls3E6vtYLvKxTbBUxGaX6p_cPgK8qZLF4dyz87pJEt0yBJ90D4APzkDKQVhD0pbzRI8jXRE11p0ruASFpqMYM5lTL_l-B0GxNkF9wIF9O5Ncgx2iLIcPHrPRkhzoLkS_ZhXqim4HIp-qNV-yDm1_z_kBGPFoi3F_Og20jLGiUPQ4Tt7WP1LmGWdg5FJK&state=4cd0b4ab5afbe8553674bc666fd93001d1cfea4007f66c4e" for 127.0.0.1 at 2017-07-17 02:36:17 +0200
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQDYbyjv84oTw1ydAvOMq1VJrd2KOADIzs2-114GROAUolkOVOMAih5P0CjYkc-mQj-6V1OY9PoCKhs7p2G4CAzEbSKouSljm3_72OGFC3avSmHiaCofJZHJnwUtXpwCxFC3eO4jipiM2dUlLgvrxs3iB20Cls3E6vtYLvKxTbBUxGaX6p_cPgK8qZLF4dyz87pJEt0yBJ90D4APzkDKQVhD0pbzRI8jXRE11p0ruASFpqMYM5lTL_l-B0GxNkF9wIF9O5Ncgx2iLIcPHrPRkhzoLkS_ZhXqim4HIp-qNV-yDm1_z_kBGPFoi3F_Og20jLGiUPQ4Tt7WP1LmGWdg5FJK", "state"=>"4cd0b4ab5afbe8553674bc666fd93001d1cfea4007f66c4e"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["provider", "facebook"], ["uid", "1621526534547040"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.4ms)
+
+
+  
+NameError (undefined local variable or method `pry' for #<Class:0x007f56aa128f10>
+Did you mean?  primary_key
+               pretty_print
+               primary_key=
+               p
+               pretty_inspect
+               pretty_print_cycle
+               proc
+               try):
+  
+app/models/user.rb:13:in `block in from_omniauth'
+app/models/user.rb:10:in `from_omniauth'
+app/controllers/users/omniauth_callbacks_controller.rb:3:in `facebook'
+Started GET "/users/auth/facebook/callback?code=AQDYbyjv84oTw1ydAvOMq1VJrd2KOADIzs2-114GROAUolkOVOMAih5P0CjYkc-mQj-6V1OY9PoCKhs7p2G4CAzEbSKouSljm3_72OGFC3avSmHiaCofJZHJnwUtXpwCxFC3eO4jipiM2dUlLgvrxs3iB20Cls3E6vtYLvKxTbBUxGaX6p_cPgK8qZLF4dyz87pJEt0yBJ90D4APzkDKQVhD0pbzRI8jXRE11p0ruASFpqMYM5lTL_l-B0GxNkF9wIF9O5Ncgx2iLIcPHrPRkhzoLkS_ZhXqim4HIp-qNV-yDm1_z_kBGPFoi3F_Og20jLGiUPQ4Tt7WP1LmGWdg5FJK&state=4cd0b4ab5afbe8553674bc666fd93001d1cfea4007f66c4e" for 127.0.0.1 at 2017-07-17 02:36:48 +0200
+Processing by Users::OmniauthCallbacksController#failure as HTML
+  Parameters: {"code"=>"AQDYbyjv84oTw1ydAvOMq1VJrd2KOADIzs2-114GROAUolkOVOMAih5P0CjYkc-mQj-6V1OY9PoCKhs7p2G4CAzEbSKouSljm3_72OGFC3avSmHiaCofJZHJnwUtXpwCxFC3eO4jipiM2dUlLgvrxs3iB20Cls3E6vtYLvKxTbBUxGaX6p_cPgK8qZLF4dyz87pJEt0yBJ90D4APzkDKQVhD0pbzRI8jXRE11p0ruASFpqMYM5lTL_l-B0GxNkF9wIF9O5Ncgx2iLIcPHrPRkhzoLkS_ZhXqim4HIp-qNV-yDm1_z_kBGPFoi3F_Og20jLGiUPQ4Tt7WP1LmGWdg5FJK", "state"=>"4cd0b4ab5afbe8553674bc666fd93001d1cfea4007f66c4e"}
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:36:48 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (1.7ms)
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 64ms (Views: 30.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:36:52 +0200
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:36:52 +0200
+Started GET "/users/auth/facebook/callback?code=AQBOxMt3b-U09-NAEAMMwq63WP7u5rpeKE8vrGACKHoTVxVuwSBT80gv17b-px01HP3D2Imc5BZt1_2swHylyhp2wydbfQYgEt9UPmGpnJc6rHOsBCLZbqMN57OzKVMkfyaoCHouq9kR8XNZ8NumyFame0XunReFWhgr4J4huWovjfdbuFbuPDFN-2909Urse5MQcNR4V_iPEK6fL4G_4R-Nxp1XGmtWIbjvMCozJsoS18zp8oN52neZqlTjMwtwH3uPbNVlpIvx0sC4YNvq-EIABUueOtDzjiM2zRGXPpiYjJpsQ8Gf7PtLj9m9uHLwmxJvaDPrb6QDPeiWXY5x7Gdp&state=1644ceab7af002559a32d82fa14a18bee078abf96a2cfc7d" for 127.0.0.1 at 2017-07-17 02:36:52 +0200
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQBOxMt3b-U09-NAEAMMwq63WP7u5rpeKE8vrGACKHoTVxVuwSBT80gv17b-px01HP3D2Imc5BZt1_2swHylyhp2wydbfQYgEt9UPmGpnJc6rHOsBCLZbqMN57OzKVMkfyaoCHouq9kR8XNZ8NumyFame0XunReFWhgr4J4huWovjfdbuFbuPDFN-2909Urse5MQcNR4V_iPEK6fL4G_4R-Nxp1XGmtWIbjvMCozJsoS18zp8oN52neZqlTjMwtwH3uPbNVlpIvx0sC4YNvq-EIABUueOtDzjiM2zRGXPpiYjJpsQ8Gf7PtLj9m9uHLwmxJvaDPrb6QDPeiWXY5x7Gdp", "state"=>"1644ceab7af002559a32d82fa14a18bee078abf96a2cfc7d"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["provider", "facebook"], ["uid", "1621526534547040"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ido5555@hotmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "provider", "uid") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "ido5555@hotmail.com"], ["encrypted_password", "$2a$11$EXOevCcpsHsHhRDZftH.g.qbNYlBw8fa8ZFrZvEHtwdY98IWwWgke"], ["created_at", "2017-07-17 00:39:02.703161"], ["updated_at", "2017-07-17 00:39:02.703161"], ["provider", "facebook"], ["uid", "1621526534547040"]]
+  [1m[35m (144.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", "2017-07-17 00:39:02.854915"], ["last_sign_in_at", "2017-07-17 00:39:02.854915"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", "2017-07-17 00:39:02.855789"], ["id", 4]]
+  [1m[35m (161.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 129164ms (ActiveRecord: 308.5ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:39:03 +0200
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 32ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:39:03 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.6ms)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 4]]
+  [1m[35m (113.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:39:13 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:39:13 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (1.9ms)
+  Rendered /home/mostafa/.rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 29ms (Views: 27.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:39:14 +0200
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2017-07-17 02:39:15 +0200
+Started GET "/users/auth/facebook/callback?code=AQDxH90QtwHDLxpnIGN5mCkE6Q4e6AA1H4MPwiMjHdtNNK_Zg6_ya5taTwsTWQt70BsEUxFz46Fmkp5uAdxq9spi9QWQYYs_JSoGlwIgeoxxLib-izOXXkASCYBBSiLV-5jzfxPOSumITQDYBeKGU1onoKag7ut5pG0aaj7t5t2dgLow8QKjHczLNVBp91K1mHrTD7Vi0NbijLIcl5tCUnOjxJhWo3p5gzbjcOJCJaG5rVMmkuw7kIqP3K4iamHIRL3XJFwGh9mqEfp3vX5egrzSX8d8BSAX4fvf9zPx7097KHusMAfiZD6Wn6WcuTaR9ImJavK8636MBa8AeaRYhPw7&state=c03a3626e521b04c8ce6528615ca32c5335c6940683eb31c" for 127.0.0.1 at 2017-07-17 02:39:15 +0200
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQDxH90QtwHDLxpnIGN5mCkE6Q4e6AA1H4MPwiMjHdtNNK_Zg6_ya5taTwsTWQt70BsEUxFz46Fmkp5uAdxq9spi9QWQYYs_JSoGlwIgeoxxLib-izOXXkASCYBBSiLV-5jzfxPOSumITQDYBeKGU1onoKag7ut5pG0aaj7t5t2dgLow8QKjHczLNVBp91K1mHrTD7Vi0NbijLIcl5tCUnOjxJhWo3p5gzbjcOJCJaG5rVMmkuw7kIqP3K4iamHIRL3XJFwGh9mqEfp3vX5egrzSX8d8BSAX4fvf9zPx7097KHusMAfiZD6Wn6WcuTaR9ImJavK8636MBa8AeaRYhPw7", "state"=>"c03a3626e521b04c8ce6528615ca32c5335c6940683eb31c"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["provider", "facebook"], ["uid", "1621526534547040"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ido5555@hotmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "provider", "uid", "name") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["email", "ido5555@hotmail.com"], ["encrypted_password", "$2a$11$pEtAiZYN8lTk7c11V02zpenB03Qwwr/PBGBkv3MYI1zkirhJE.D6K"], ["created_at", "2017-07-17 00:39:17.025898"], ["updated_at", "2017-07-17 00:39:17.025898"], ["provider", "facebook"], ["uid", "1621526534547040"], ["name", "Mostafa Hosny"]]
+  [1m[35m (154.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", "2017-07-17 00:39:17.185755"], ["last_sign_in_at", "2017-07-17 00:39:17.185755"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", "2017-07-17 00:39:17.187080"], ["id", 5]]
+  [1m[35m (127.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 480ms (ActiveRecord: 286.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-07-17 02:39:17 +0200
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-17 02:39:17 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.6ms)
+
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723023530) do
+ActiveRecord::Schema.define(version: 20170723145123) do
 
   create_table "entertainments", force: :cascade do |t|
     t.string "title", default: "", null: false
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20170723023530) do
     t.string "media_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "stars"
+    t.text "comment"
+    t.integer "rateable_id"
+    t.string "rateable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

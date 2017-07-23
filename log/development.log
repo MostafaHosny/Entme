@@ -591,3 +591,123 @@ Migrating to CreateEntertainments (20170723023530)
             FROM sqlite_temp_master
             WHERE name='index_users_on_email' AND type='index'
 [0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_provider' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[36mFilm Load (0.4ms)[0m  [1m[34mSELECT  "entertainments".* FROM "entertainments" WHERE "entertainments"."type" IN ('Film') LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mFilm Load (0.5ms)[0m  [1m[34mSELECT  "entertainments".* FROM "entertainments" WHERE "entertainments"."type" IN ('Film') ORDER BY "entertainments"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRatings (20170723145123)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRatings (20170723145123)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "stars" integer, "comment" text, "rateable_id" integer, "rateable_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_a7dfeb9f5f"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_ratings_on_user_id" ON "ratings" ("user_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170723145123"]]
+  [1m[35m (147.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_ratings_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_ratings_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_provider' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[36mFilm Load (0.7ms)[0m  [1m[34mSELECT  "entertainments".* FROM "entertainments" WHERE "entertainments"."type" IN ('Film') ORDER BY "entertainments"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "entertainments" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2017-07-23 14:59:37.238638"], ["updated_at", "2017-07-23 14:59:37.238638"]]
+  [1m[35m (134.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mRating Load (0.8ms)[0m  [1m[34mSELECT  "ratings".* FROM "ratings" WHERE "ratings"."rateable_id" = ? AND "ratings"."rateable_type" = ? LIMIT ?[0m  [["rateable_id", 1], ["rateable_type", "Entertainment"], ["LIMIT", 11]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "ratings" ("user_id", "rateable_id", "rateable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 5], ["rateable_id", 1], ["rateable_type", "Entertainment"], ["created_at", "2017-07-23 15:00:49.635121"], ["updated_at", "2017-07-23 15:00:49.635121"]]
+  [1m[35m (139.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mRating Load (0.6ms)[0m  [1m[34mSELECT "ratings".* FROM "ratings" WHERE "ratings"."rateable_id" = ? AND "ratings"."rateable_type" = ?[0m  [["rateable_id", 1], ["rateable_type", "Entertainment"]]
+  [1m[36mFilm Load (0.6ms)[0m  [1m[34mSELECT  "entertainments".* FROM "entertainments" WHERE "entertainments"."type" IN ('Film') ORDER BY "entertainments"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mFilm Load (0.8ms)[0m  [1m[34mSELECT  "entertainments".* FROM "entertainments" WHERE "entertainments"."type" IN ('Film') ORDER BY "entertainments"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1m[34mSELECT  "ratings".* FROM "ratings" WHERE "ratings"."rateable_id" = ? AND "ratings"."rateable_type" = ? LIMIT ?[0m  [["rateable_id", 1], ["rateable_type", "Entertainment"], ["LIMIT", 11]]
+  [1m[36mRating Load (0.7ms)[0m  [1m[34mSELECT  "ratings".* FROM "ratings" ORDER BY "ratings"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT  "ratings".* FROM "ratings" ORDER BY "ratings"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mRating Load (0.3ms)[0m  [1m[34mSELECT  "ratings".* FROM "ratings" ORDER BY "ratings"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mRating Load (0.4ms)[0m  [1m[34mSELECT  "ratings".* FROM "ratings" ORDER BY "ratings"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mRating Load (0.4ms)[0m  [1m[34mSELECT  "ratings".* FROM "ratings" ORDER BY "ratings"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mEntertainment Load (0.3ms)[0m  [1m[34mSELECT  "entertainments".* FROM "entertainments" WHERE "entertainments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
